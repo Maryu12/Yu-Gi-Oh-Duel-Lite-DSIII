@@ -22,7 +22,7 @@ public class YgoApiClient {
         this.client = HttpClient.newHttpClient();
     }
 
-    //Carta aleatoria
+    //Carta aleatoria, tener en cuenta esta seccion ya que aca tiene ya argumentos definidos para la Clase Card
     public Card getRandomCard() throws Exception {
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -39,7 +39,8 @@ public class YgoApiClient {
 
         if (!json.has("name")) {throw new JSONException("El JSON no contiene name. "); }
 
-        //Datos (ataque, defensa y nombre)
+        //Datos (ataque, defensa y nombre) Variables que se usaran para la Clase Card (Modificar si es necesario)
+
         String name = json.getString("name");
         int atk = json.has("atk") ? json.getInt("atk") : 0;
         int def = json.has("def") ? json.getInt("def") : 0;
@@ -47,6 +48,7 @@ public class YgoApiClient {
         if (!json.has ("card_images")){
             throw new JSONException("El JSON no contiene imagenes");
         }
+
 
         // Imagen
         String imageURL = json.getJSONArray("card_images")
