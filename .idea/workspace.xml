@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d37e8f22-bc21-438b-aeb9-8db43949a07f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Duel_Lite/Duel_Lite.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/Duel_Lite.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Duel_Lite/src/APIYgo/YgoApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/APIYgo/YgoApiClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.java" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle.class" afterDir="false" />
@@ -73,6 +71,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "31",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "251",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
@@ -126,5 +125,16 @@
       <updated>1759670096089</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
