@@ -41,17 +41,17 @@ public class YGOBattle {
         // Evita bloquear la interfaz
         new Thread(() -> {
             try {
-                // 🔹 Carga cartas de jugador y máquina en segundo plano
+                //Carga cartas de jugador y máquina en segundo plano
                 cartasJugador = apiClient.getRandomCards(3);
                 cartasMaquina = apiClient.getRandomCards(3);
 
-                // 🔹 URL para las cartas boca abajo (Por arreglar)
+                //URL para las cartas boca abajo (Por arreglar)
                /* String backUrl = "https://www.pngkey.com/detail/u2w7u2a9w7y3w7t4_1980-1300-in-yugioh-card-back-yu/";
                 ImageIcon backIcon = new ImageIcon(new java.net.URL(backUrl));
                 Image backScaled = backIcon.getImage().getScaledInstance(120, 180, Image.SCALE_SMOOTH);
                 ImageIcon backFinal = new ImageIcon(backScaled);*/
 
-                // 🔹 Ahora actualizamos la interfaz (en el hilo principal de Swing)
+                //Ahora actualizamos la interfaz (en el hilo principal de Swing)
                 SwingUtilities.invokeLater(() -> {
                     JLabel[] labelsJugador = {labelJugador1, labelJugador2, labelJugador3};
                     JLabel[] labelsMaquina = {labelMaquina1, labelMaquina2, labelMaquina3};
@@ -105,7 +105,7 @@ public class YGOBattle {
                         lbl.setHorizontalAlignment(SwingConstants.CENTER);
                     }*/
 
-                    // 🔹 Refrescamos ambos paneles
+                    //Refrescamos ambos paneles
                     PanelJugador.revalidate();
                     PanelJugador.repaint();
                     PanelMaquina.revalidate();
@@ -120,7 +120,7 @@ public class YGOBattle {
         }).start();
     }
 
-    // 🔹 Constructor
+    //Constructor
     public YGOBattle() {
         REPARTIRCARTASButton.addActionListener(e -> cargarCartas());
 
