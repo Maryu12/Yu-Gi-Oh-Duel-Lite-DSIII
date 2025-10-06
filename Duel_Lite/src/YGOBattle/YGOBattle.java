@@ -33,6 +33,7 @@ public class YGOBattle {
     private JLabel partidasMaquina;
     private JLabel labelGanador;
     private JLabel Label_Turno;
+    private JTextArea textArea1;
     // Variables de control del juego
     private int puntosJugador = 0;
     private int puntosMaquina = 0;
@@ -66,6 +67,15 @@ public class YGOBattle {
             this.posicion = posicion;
         }
     }
+
+    // --- MÉTODO NUEVO ---
+    private void log(String mensaje) {
+        if (textArea1 != null) {
+            textArea1.append(mensaje + "\n");
+            textArea1.setCaretPosition(textArea1.getDocument().getLength());
+        }
+    }
+
     //reparte las cartas a jugador y máquina desde la api
     private void repartirCartas() {
         SwingWorker<Void, String> worker = new SwingWorker<>() {
@@ -84,15 +94,18 @@ public class YGOBattle {
             @Override
             protected void process(List<String> chunks) {
                 JOptionPane.showMessageDialog(mainPanel, chunks.get(0));
+                log(chunks.get(0));
                 mostrarCartas();
             }
         };
         worker.execute();
     }
+
     // elegir quien va  a comenzar a jugar
     private void iniciarBatalla() {
         if (cartasJugador == null || cartasMaquina == null) {
             JOptionPane.showMessageDialog(mainPanel, "Primero reparte las cartas antes de iniciar la batalla.");
+            log("Primero reparte las cartas antes de iniciar la batalla.");
             return;
         }
         // Turno aleatorio
@@ -103,11 +116,13 @@ public class YGOBattle {
         Label_Turno.setText("Turno: " + turnoActual);
         JOptionPane.showMessageDialog(mainPanel,
                 "¡La batalla comienza!\n" + turnoActual + " tiene el primer turno.");
+        log("¡La batalla comienza! " + turnoActual + " tiene el primer turno.");
 
         if (turnoActual.equals("Máquina")) {
             turnoMaquina(null);
         }
     }
+
     // Asigna eventos de clic a las cartas del jugador
     private void configurarClicksCartasJugador() {
         JLabel[] labels = {labelJugador1, labelJugador2, labelJugador3};
@@ -117,19 +132,17 @@ public class YGOBattle {
             labels[i].addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    // Si no es turno del jugador pues no puede jugar
                     if (!"Jugador".equals(turnoActual)) {
                         JOptionPane.showMessageDialog(mainPanel, "No es tu turno todavía.");
+                        log("Intento inválido: no es tu turno todavía.");
                         return;
                     }
                     if (cartasJugador == null || cartasJugador.size() < 3) {
                         JOptionPane.showMessageDialog(mainPanel, "Primero debes repartir las cartas.");
+                        log("Primero debes repartir las cartas.");
                         return;
                     }
-                    // Carta seleccionada por el jugador
                     Card cartaElegida = cartasJugador.get(index);
-
-                    // Se le pide al jugador elegir la posición de la carta
                     String[] opciones = {"Ataque", "Defensa"};
                     String posicion = (String) JOptionPane.showInputDialog(
                             mainPanel,
@@ -148,14 +161,17 @@ public class YGOBattle {
                             "Has elegido: " + cartaElegida.getName() + "\nPosición: " + posicion +
                                     "\n(ATK: " + cartaElegida.getAtk() +
                                     " / DEF: " + cartaElegida.getDef() + ")");
+                    log("Jugador juega: " + cartaElegida.getName() + " (" + posicion + ") ATK:" + cartaElegida.getAtk() + " DEF:" + cartaElegida.getDef());
 
                     turnoActual = "Máquina";
                     Label_Turno.setText("Turno: Máquina");
+                    log("Turno: Máquina");
                     turnoMaquina(cartaSeleccionadaJugador);
                 }
             });
         }
     }
+
     //Logica del turno de la máquina (elige carta y posición aleatoriamente)
     private void turnoMaquina(CartaJugada jugadaJugador) {
         new Thread(() -> {
@@ -170,7 +186,7 @@ public class YGOBattle {
 
                 JLabel[] labelsMaquina = {labelMaquina1, labelMaquina2, labelMaquina3};
                 ImageIcon icon = new ImageIcon(new java.net.URL(cartaElegida.getImageUrl()));
-                ImageIcon scaled = new ImageIcon(icon.getImage().getScaledInstance(180, 260, java.awt.Image.SCALE_SMOOTH));
+                ImageIcon scaled = new ImageIcon(icon.getImage().getScaledInstance(90, 130, java.awt.Image.SCALE_SMOOTH));
                 labelsMaquina[index].setIcon(scaled);
                 labelsMaquina[index].setText("<html><center>" + cartaElegida.getName() + "<br>ATK: " + cartaElegida.getAtk() + "<br>DEF: " + cartaElegida.getDef() + "<br>(" + posicion + ")</center></html>");
                 labelsMaquina[index].setHorizontalTextPosition(SwingConstants.CENTER);
@@ -178,6 +194,7 @@ public class YGOBattle {
 
                 JOptionPane.showMessageDialog(mainPanel,
                         "La máquina juega: " + cartaElegida.getName() + "\nPosición: " + posicion);
+                log("Máquina juega: " + cartaElegida.getName() + " (" + posicion + ") ATK:" + cartaElegida.getAtk() + " DEF:" + cartaElegida.getDef());
 
                 if (jugadaJugador != null) {
                     compararCartas(jugadaJugador, cartaSeleccionadaMaquina);
@@ -185,11 +202,13 @@ public class YGOBattle {
 
                 turnoActual = "Jugador";
                 Label_Turno.setText("Turno: Jugador");
+                log("Turno: Jugador");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }).start();
     }
+
     //Compara las cartas sus posiciones y valores en ataque y defensa
     private void compararCartas(CartaJugada jugador, CartaJugada maquina) {
         String resultado;
@@ -220,19 +239,22 @@ public class YGOBattle {
         } else {
             resultado = "Empate en la ronda " + rondasJugadas;
         }
-        // Mostrar resultado
+
         JOptionPane.showMessageDialog(mainPanel, resultado);
+        log(resultado);
+
         PartidasJugador.setText("Partidas ganadas: " + puntosJugador);
         partidasMaquina.setText("Partidas ganadas: " + puntosMaquina);
-        // Si alguien llega a 2 rondas, termina el duelo
 
         if (puntosJugador == 2 || puntosMaquina == 2) {
-            String ganador = (puntosJugador == 2) ? "Jugador 🎉" : "Máquina 🤖";
+            String ganador = (puntosJugador == 2) ? "Jugador" : "Máquina";
             labelGanador.setText("GANADOR: " + ganador);
             JOptionPane.showMessageDialog(mainPanel, "🎊 ¡" + ganador + " gana el duelo!");
+            log("🎊 ¡" + ganador + " gana el duelo!");
             reiniciarDuelo();
         }
     }
+
     // Reinicia todo
     private void reiniciarDuelo() {
         puntosJugador = 0;
@@ -244,7 +266,9 @@ public class YGOBattle {
         PartidasJugador.setText("Partidas ganadas: 0");
         partidasMaquina.setText("Partidas ganadas: 0");
         Label_Turno.setText("Turno: -");
+        log("Duelo reiniciado.\n");
     }
+
     // Muestra las imágenes e info de las cartas del jugador y oculta las de la máquina
     private void mostrarCartas() {
         try {
@@ -254,7 +278,7 @@ public class YGOBattle {
             for (int i = 0; i < cartasJugador.size() && i < labelsJugador.length; i++) {
                 Card c = cartasJugador.get(i);
                 ImageIcon icon = new ImageIcon(new java.net.URL(c.getImageUrl()));
-                ImageIcon scaled = new ImageIcon(icon.getImage().getScaledInstance(180, 260, java.awt.Image.SCALE_SMOOTH));
+                ImageIcon scaled = new ImageIcon(icon.getImage().getScaledInstance(90, 130, java.awt.Image.SCALE_SMOOTH));
                 labelsJugador[i].setIcon(scaled);
                 labelsJugador[i].setText("<html><center>" + c.getName() + "<br>ATK: " + c.getAtk() + "<br>DEF: " + c.getDef() + "</center></html>");
                 labelsJugador[i].setHorizontalTextPosition(SwingConstants.CENTER);
@@ -269,6 +293,7 @@ public class YGOBattle {
         } catch (Exception e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(mainPanel, "Error al mostrar las imágenes: " + e.getMessage());
+            log("Error al mostrar las imágenes: " + e.getMessage());
         }
     }
 

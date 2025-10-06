@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d37e8f22-bc21-438b-aeb9-8db43949a07f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Duel_Lite/Images/Back_Card .png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Duel_Lite/src/APIYgo/YgoApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/APIYgo/YgoApiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.form" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.java" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$CartaJugada.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$CartaJugada.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +48,12 @@
     &quot;author&quot;: &quot;ryuklyra&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Maryu12/Yu-Gi-Oh-Duel-Lite-DSIII.git&quot;,
-    &quot;accountId&quot;: &quot;c16d274f-5c95-4ae8-b93e-c93ba4005b76&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Maryu12/Yu-Gi-Oh-Duel-Lite-DSIII.git",
+    "accountId": "da679f87-3640-449c-a883-a9581b3d2990"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -60,34 +66,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Run YGOBattle.executor&quot;: &quot;Run&quot;,
-    &quot;Application.YGOBattle.YGOBattle.executor&quot;: &quot;Run&quot;,
-    &quot;Application.YGOBattle.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;31&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;false&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;251&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII/Duel_Lite/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Run YGOBattle.executor": "Run",
+    "Application.YGOBattle.YGOBattle.executor": "Run",
+    "Application.YGOBattle.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "false",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "174",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "373",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Karen/Downloads/Yu-Gi-Oh-Duel-Lite-DSIII/Duel_Lite/Images",
+    "onboarding.tips.debug.path": "C:/Users/Karen/Downloads/Yu-Gi-Oh-Duel-Lite-DSIII/Duel_Lite/Images/src/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Karen\Downloads\Yu-Gi-Oh-Duel-Lite-DSIII\Duel_Lite\Images" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Run YGOBattle">
     <configuration name="Run YGOBattle" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="YGOBattle.YGOBattle" />
       <module name="Duel_Lite" />
       <option name="PROGRAM_PARAMETERS" value="Duel_Lite" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Duel_Lite" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YGOBattle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="UNNAMED_CLASS_CONFIGURATION" value="true" />
+      <option name="MAIN_CLASS_NAME" value="YGOBattle" />
+      <module name="Duel_Lite" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -107,10 +127,12 @@
     </configuration>
     <list>
       <item itemvalue="Application.Run YGOBattle" />
+      <item itemvalue="Application.YGOBattle" />
       <item itemvalue="Application.YGOBattle.YGOBattle" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.YGOBattle" />
         <item itemvalue="Application.YGOBattle.YGOBattle" />
       </list>
     </recent_temporary>
@@ -135,5 +157,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Duel_Lite/Images/src/Main.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
