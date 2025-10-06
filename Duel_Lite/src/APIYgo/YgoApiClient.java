@@ -30,69 +30,60 @@ public class YgoApiClient {
         final int MAX_ATTEMPTS = 8;
 
         for (int attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(RANDOM_URL))
-                    .header("User-Agent", "Java HttpClient") // ayuda a evitar bloqueos
-                    .GET()
-                    .build();
+            try {
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(RANDOM_URL))
+                        .header("User-Agent", "Java HttpClient")
+                        .GET()
+                        .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            System.out.println("Código HTTP: " + response.statusCode());
-            System.out.println("que vaina esta saliendo?: " + response.body());
-
-            if (response.statusCode() != 200) {
-                System.err.println("HTTP " + response.statusCode() + " — reintentando...");
-                continue;
-            }
-
-            JSONObject root = new JSONObject(response.body());
-            JSONObject cardJson = null;
-
-            if (root.has("data")) {
-                JSONArray arr = root.getJSONArray("data");
-                if (arr.length() == 0) {
-                    System.err.println("data vacío, reintentando...");
+                if (response.statusCode() != 200) {
+                    System.err.println("HTTP " + response.statusCode() + " — reintentando...");
                     continue;
                 }
-                cardJson = arr.getJSONObject(0);
-            } else {
 
-                cardJson = root;
-            }
+                JSONObject root = new JSONObject(response.body());
+                JSONObject cardJson = root.has("data")
+                        ? root.getJSONArray("data").getJSONObject(0)
+                        : root;
 
-            // Obtener el tipo de la carta (con fallback)
-            String type = cardJson.optString("type", cardJson.optString("humanReadableCardType", ""));
-            if (type == null) type = "";
-
-            // Filtrar solo cartas Monster
-            if (!type.toLowerCase().contains("monster")) {
-                System.out.println("No es Monster (tipo = \"" + type + "\"), intento " + attempt + " de " + MAX_ATTEMPTS);
-                continue;
-            }
-
-            // Obtener campos seguros
-            String name = cardJson.optString("name", "Unknown");
-            int atk = cardJson.has("atk") ? cardJson.optInt("atk", 0) : 0;
-            int def = cardJson.has("def") ? cardJson.optInt("def", 0) : 0;
-            // evitar valores negativos
-            if (atk < 0) atk = 0;
-            if (def < 0) def = 0;
-
-            String imageURL = "";
-            if (cardJson.has("card_images")) {
-                JSONArray imgs = cardJson.getJSONArray("card_images");
-                if (imgs.length() > 0) {
-                    imageURL = imgs.getJSONObject(0).optString("image_url", "");
+                String type = cardJson.optString("type", "").toLowerCase();
+                if (!type.contains("monster")) {
+                    System.out.println("Carta no válida (no Monster), intento " + attempt);
+                    continue;
                 }
-            }
 
-            System.out.println(" Carta obtenida: " + name + " (ATK: " + atk + ", DEF: " + def + ")");
-            return new Card(name, atk, def, imageURL);
+                String name = cardJson.optString("name", "Desconocida");
+                int atk = Math.max(0, cardJson.optInt("atk", 0));
+                int def = Math.max(0, cardJson.optInt("def", 0));
+
+                String imageURL = "";
+                if (cardJson.has("card_images")) {
+                    JSONArray imgs = cardJson.getJSONArray("card_images");
+                    if (imgs.length() > 0) {
+                        imageURL = imgs.getJSONObject(0).optString("image_url", "");
+                    }
+                }
+
+                System.out.println("Carta obtenida: " + name);
+                return new Card(name, atk, def, imageURL);
+
+            } catch (java.net.ConnectException ce) {
+                throw new Exception("Error de conexión: no se pudo conectar con la API.");
+            } catch (java.net.UnknownHostException ue) {
+                throw new Exception("Error de red: verifica tu conexión a Internet.");
+            } catch (Exception e) {
+                System.err.println("Error al obtener carta: " + e.getMessage());
+                if (attempt == MAX_ATTEMPTS)
+                    throw new Exception("No se pudo obtener una carta después de varios intentos.");
+            }
         }
 
-        throw new RuntimeException("No se obtuvo carta Monster tras " + MAX_ATTEMPTS + " intentos");
+        throw new Exception("Error desconocido al intentar obtener cartas.");
     }
+
 
 
     // numero de cartas aleatorias

@@ -8,6 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Random;
+import java.awt.*;
+import javax.swing.border.*;
+
 
 public class YGOBattle {
     // Componentes de la interfaz gráfica
@@ -39,6 +42,9 @@ public class YGOBattle {
     private int puntosMaquina = 0;
     private int rondasJugadas = 0;
 
+    private boolean cartasRepartidas = false;
+
+
     //guardan las cartas obtenidas desde la api
     private List<Card> cartasJugador;
     private List<Card> cartasMaquina;
@@ -55,6 +61,10 @@ public class YGOBattle {
         iniciarBatallaButton.addActionListener(e -> iniciarBatalla());
         REINICIARButton.addActionListener(e -> reiniciarDuelo());
         configurarClicksCartasJugador();
+
+        aplicarEstiloAnime();
+
+
     }
 
     // Clase interna para representar una carta jugada con su posición
@@ -77,51 +87,84 @@ public class YGOBattle {
     }
 
     //reparte las cartas a jugador y máquina desde la api
+    // reparte las cartas a jugador y máquina desde la api
     private void repartirCartas() {
+        // Evitar que reparta dos veces
+        if (cartasRepartidas) {
+            JOptionPane.showMessageDialog(mainPanel, "Las cartas ya fueron repartidas. No puedes volver a hacerlo.");
+            log("Intento de repartir cartas nuevamente bloqueado.");
+            return;
+        }
+
         SwingWorker<Void, String> worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() {
                 try {
                     cartasJugador = apiClient.getRandomCards(3);
                     cartasMaquina = apiClient.getRandomCards(3);
-                    publish("Cartas repartidas correctamente.");
+                    publish("✅ Cartas repartidas correctamente.");
                 } catch (Exception ex) {
-                    publish("Error al repartir cartas: " + ex.getMessage());
+                    publish("No se pudieron cargar las cartas.\nVerifica tu conexión a Internet o intenta nuevamente.\n" + ex.getMessage());
+                    ex.printStackTrace();
                 }
                 return null;
             }
 
             @Override
             protected void process(List<String> chunks) {
-                JOptionPane.showMessageDialog(mainPanel, chunks.get(0));
-                log(chunks.get(0));
-                mostrarCartas();
+                String mensaje = chunks.get(chunks.size() - 1);
+                JOptionPane.showMessageDialog(mainPanel, mensaje);
+                log(mensaje);
+
+                if (mensaje.contains("✅")) {
+                    mostrarCartas();
+
+                    // Marcar que ya se repartieron
+                    cartasRepartidas = true;
+
+                    // Deshabilitar el botón para evitar repartir otra vez
+                    REPARTIRCARTASButton.setEnabled(false);
+
+                    // Verificar si ambas manos están listas para permitir iniciar
+                    if (cartasJugador != null && cartasMaquina != null &&
+                            cartasJugador.size() == 3 && cartasMaquina.size() == 3) {
+                        iniciarBatallaButton.setEnabled(true);
+                        log("✅ Cartas listas. Puedes iniciar la batalla.");
+                    } else {
+                        iniciarBatallaButton.setEnabled(false);
+                        log("❌ Las cartas no se cargaron correctamente.");
+                    }
+                }
             }
         };
         worker.execute();
     }
 
+
+
+
     // elegir quien va  a comenzar a jugar
     private void iniciarBatalla() {
-        if (cartasJugador == null || cartasMaquina == null) {
-            JOptionPane.showMessageDialog(mainPanel, "Primero reparte las cartas antes de iniciar la batalla.");
-            log("Primero reparte las cartas antes de iniciar la batalla.");
+        if (!cartasRepartidas || cartasJugador == null || cartasMaquina == null ||
+                cartasJugador.size() < 3 || cartasMaquina.size() < 3) {
+            JOptionPane.showMessageDialog(mainPanel, "No puedes iniciar la batalla hasta que ambos tengan sus 3 cartas cargadas.");
+            log("Intento de iniciar batalla sin cartas completas.");
             return;
         }
-        // Turno aleatorio
+
         Random random = new Random();
         boolean jugadorEmpieza = random.nextBoolean();
         turnoActual = jugadorEmpieza ? "Jugador" : "Máquina";
 
         Label_Turno.setText("Turno: " + turnoActual);
-        JOptionPane.showMessageDialog(mainPanel,
-                "¡La batalla comienza!\n" + turnoActual + " tiene el primer turno.");
+        JOptionPane.showMessageDialog(mainPanel, "¡La batalla comienza!\n" + turnoActual + " tiene el primer turno.");
         log("¡La batalla comienza! " + turnoActual + " tiene el primer turno.");
 
         if (turnoActual.equals("Máquina")) {
             turnoMaquina(null);
         }
     }
+
 
     // Asigna eventos de clic a las cartas del jugador
     private void configurarClicksCartasJugador() {
@@ -257,17 +300,20 @@ public class YGOBattle {
 
     // Reinicia todo
     private void reiniciarDuelo() {
-        puntosJugador = 0;
-        puntosMaquina = 0;
-        rondasJugadas = 0;
-        cartasJugador = null;
-        cartasMaquina = null;
-        labelGanador.setText("");
-        PartidasJugador.setText("Partidas ganadas: 0");
-        partidasMaquina.setText("Partidas ganadas: 0");
-        Label_Turno.setText("Turno: -");
-        log("Duelo reiniciado.\n");
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(mainPanel);
+        cartasRepartidas = false;
+        REPARTIRCARTASButton.setEnabled(true);
+        iniciarBatallaButton.setEnabled(false);
+        frame.dispose(); // Cierra la ventana actual
+        SwingUtilities.invokeLater(() -> {
+            JFrame newFrame = new JFrame("YGOBattle");
+            newFrame.setContentPane(new YGOBattle().mainPanel);
+            newFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            newFrame.pack();
+            newFrame.setVisible(true);
+        });
     }
+
 
     // Muestra las imágenes e info de las cartas del jugador y oculta las de la máquina
     private void mostrarCartas() {
@@ -287,7 +333,7 @@ public class YGOBattle {
 
             for (JLabel label : labelsMaquina) {
                 label.setIcon(null);
-                label.setText("🂠");
+                label.setText("");
             }
 
         } catch (Exception e) {
@@ -296,6 +342,114 @@ public class YGOBattle {
             log("Error al mostrar las imágenes: " + e.getMessage());
         }
     }
+    private void aplicarEstiloAnime() {
+        // Colores base
+        Color fondoPrincipal = new Color(240, 240, 255);
+        Color fondoCampo = new Color(210, 225, 255);
+        Color fondoBoton = new Color(255, 214, 120);
+        Color bordeCampo = new Color(120, 150, 255);
+        Color texto = new Color(30, 30, 30);
+
+        // Fuentes
+        Font fuenteTitulo = new Font("SansSerif", Font.BOLD, 18);
+        Font fuenteNormal = new Font("SansSerif", Font.PLAIN, 14);
+
+        //Config panel principal
+        mainPanel.setBackground(fondoPrincipal);
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        mainPanel.setLayout(new BorderLayout(15, 15));
+
+        //Campo de batalla dividido: máquina arriba, jugador abajo
+        JPanel campoDeBatalla = new JPanel(new GridLayout(2, 1, 0, 20));
+        campoDeBatalla.setOpaque(false);
+
+        // --- PANEL MÁQUINA ---
+        JPanel panelMaquinaContainer = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 15));
+        panelMaquinaContainer.setBackground(fondoCampo);
+        panelMaquinaContainer.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(bordeCampo, 2),
+                "MÁQUINA",
+                0, 0, fuenteTitulo, texto
+        ));
+
+        // --- PANEL JUGADOR ---
+        JPanel panelJugadorContainer = new JPanel(new FlowLayout(FlowLayout.CENTER, 40, 15));
+        panelJugadorContainer.setBackground(fondoCampo);
+        panelJugadorContainer.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(bordeCampo, 2),
+                "JUGADOR",
+                0, 0, fuenteTitulo, texto
+        ));
+
+        // Ajuste de tamaño de las cartas
+        Dimension tamCarta = new Dimension(150, 210);
+
+        JLabel[] cartasM = {labelMaquina1, labelMaquina2, labelMaquina3};
+        JLabel[] cartasJ = {labelJugador1, labelJugador2, labelJugador3};
+
+        for (JLabel c : cartasM) {
+            c.setPreferredSize(tamCarta);
+            c.setHorizontalAlignment(SwingConstants.CENTER);
+            c.setVerticalAlignment(SwingConstants.CENTER);
+            c.setVerticalTextPosition(SwingConstants.BOTTOM);
+            c.setHorizontalTextPosition(SwingConstants.CENTER);
+            c.setFont(new Font("SansSerif", Font.PLAIN, 12));
+            panelMaquinaContainer.add(c);
+        }
+
+        for (JLabel c : cartasJ) {
+            c.setPreferredSize(tamCarta);
+            c.setHorizontalAlignment(SwingConstants.CENTER);
+            c.setVerticalAlignment(SwingConstants.CENTER);
+            c.setVerticalTextPosition(SwingConstants.BOTTOM);
+            c.setHorizontalTextPosition(SwingConstants.CENTER);
+            c.setFont(new Font("SansSerif", Font.PLAIN, 12));
+            panelJugadorContainer.add(c);
+        }
+
+        campoDeBatalla.add(panelMaquinaContainer);
+        campoDeBatalla.add(panelJugadorContainer);
+
+        // Panel lateral derecho (log)
+        JPanel panelLog = new JPanel(new BorderLayout());
+        panelLog.setPreferredSize(new Dimension(300, 0));
+        panelLog.setBackground(new Color(0, 0, 0, 60));
+        textArea1.setEditable(false);
+        textArea1.setFont(new Font("Monospaced", Font.PLAIN, 13));
+        textArea1.setBackground(new Color(255, 255, 255, 220));
+        textArea1.setForeground(Color.BLACK);
+        JScrollPane scrollLog = new JScrollPane(textArea1);
+        scrollLog.setBorder(BorderFactory.createLineBorder(bordeCampo, 2));
+        panelLog.add(scrollLog, BorderLayout.CENTER);
+
+        // Panel inferior con botones
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 25, 10));
+        panelBotones.setOpaque(false);
+
+        JButton[] botones = {REPARTIRCARTASButton, iniciarBatallaButton, REINICIARButton};
+        for (JButton b : botones) {
+            b.setBackground(fondoBoton);
+            b.setForeground(texto);
+            b.setFont(fuenteNormal);
+            b.setFocusPainted(false);
+            b.setBorder(BorderFactory.createLineBorder(new Color(100, 100, 100), 2, true));
+            b.setPreferredSize(new Dimension(180, 45));
+        }
+
+        panelBotones.add(REPARTIRCARTASButton);
+        panelBotones.add(iniciarBatallaButton);
+        panelBotones.add(REINICIARButton);
+
+
+        mainPanel.removeAll();
+        mainPanel.add(campoDeBatalla, BorderLayout.CENTER);
+        mainPanel.add(panelLog, BorderLayout.EAST);
+        mainPanel.add(panelBotones, BorderLayout.SOUTH);
+
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("YGOBattle");
