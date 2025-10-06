@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d37e8f22-bc21-438b-aeb9-8db43949a07f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/screenshots/form.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Duel_Lite/src/APIYgo/YgoApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/APIYgo/YgoApiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.form" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.java" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/APIYgo/YgoApiClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/APIYgo/YgoApiClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$CartaJugada.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$CartaJugada.class" afterDir="false" />
@@ -34,6 +33,19 @@
         </map>
       </branch-storage>
     </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/UI" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -67,28 +79,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Run YGOBattle.executor&quot;: &quot;Run&quot;,
-    &quot;Application.YGOBattle.YGOBattle.executor&quot;: &quot;Run&quot;,
-    &quot;Application.YGOBattle.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;31&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;false&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;251&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII/Duel_Lite/src/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Run YGOBattle.executor": "Run",
+    "Application.YGOBattle (1).executor": "Run",
+    "Application.YGOBattle (2).executor": "Run",
+    "Application.YGOBattle (3).executor": "Run",
+    "Application.YGOBattle (4).executor": "Run",
+    "Application.YGOBattle.YGOBattle.executor": "Run",
+    "Application.YGOBattle.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "false",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "31",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
+    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "305",
+    "full.screen.before.presentation.mode": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Karen/Downloads/Yu-Gi-Oh-Duel-Lite-DSIII/screenshots",
+    "onboarding.tips.debug.path": "C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII/Duel_Lite/src/Main.java",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Karen\Downloads\Yu-Gi-Oh-Duel-Lite-DSIII\screenshots" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Run YGOBattle">
     <configuration name="Run YGOBattle" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="YGOBattle.YGOBattle" />
@@ -99,9 +121,61 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="YGOBattle.YGOBattle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="YGOBattle (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="YGOBattle.YGOBattle" />
-      <module name="Yu-Gi-Oh-Duel-Lite-DSIII" />
+      <module name="Duel_Lite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="YGOBattle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YGOBattle (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="YGOBattle.YGOBattle" />
+      <module name="Duel_Lite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="YGOBattle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YGOBattle (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="YGOBattle.YGOBattle" />
+      <module name="Duel_Lite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="YGOBattle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YGOBattle (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="YGOBattle.YGOBattle" />
+      <module name="Duel_Lite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="YGOBattle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="YGOBattle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="YGOBattle.YGOBattle" />
+      <module name="Duel_Lite" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="YGOBattle.*" />
@@ -114,11 +188,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Run YGOBattle" />
-      <item itemvalue="Application.YGOBattle.YGOBattle" />
+      <item itemvalue="Application.YGOBattle" />
+      <item itemvalue="Application.YGOBattle (1)" />
+      <item itemvalue="Application.YGOBattle (2)" />
+      <item itemvalue="Application.YGOBattle (3)" />
+      <item itemvalue="Application.YGOBattle (4)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.YGOBattle.YGOBattle" />
+        <item itemvalue="Application.YGOBattle (4)" />
+        <item itemvalue="Application.YGOBattle (3)" />
+        <item itemvalue="Application.YGOBattle (2)" />
+        <item itemvalue="Application.YGOBattle (1)" />
+        <item itemvalue="Application.YGOBattle" />
       </list>
     </recent_temporary>
   </component>
