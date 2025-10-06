@@ -13,7 +13,7 @@ import java.util.List;
 
 public class YgoApiClient {
 
-    //Url de seleccion aleatoria
+    //Url de seleccion
     private static final String RANDOM_URL = "https://db.ygoprodeck.com/api/v7/randomcard.php/";
     private final HttpClient client;
 
@@ -49,7 +49,6 @@ public class YgoApiClient {
             JSONObject root = new JSONObject(response.body());
             JSONObject cardJson = null;
 
-            // Si la API devuelve { "data": [ {...} ], ... } -> usar data[0]
             if (root.has("data")) {
                 JSONArray arr = root.getJSONArray("data");
                 if (arr.length() == 0) {
@@ -58,7 +57,7 @@ public class YgoApiClient {
                 }
                 cardJson = arr.getJSONObject(0);
             } else {
-                // Caso en que la API retorne un objeto carta directo
+
                 cardJson = root;
             }
 
@@ -96,7 +95,7 @@ public class YgoApiClient {
     }
 
 
-    //Obtener X numero de cartas aleatorias (Cambiarlo para generar las 3)
+    // numero de cartas aleatorias
     public List<Card> getRandomCards(int count) throws Exception {
         List<Card> hand = new ArrayList<>();
         for (int i = 0; i < count; i++) {

@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d37e8f22-bc21-438b-aeb9-8db43949a07f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.java" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/YGOBattle/YGOBattle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Duel_Lite/YGOBattle/YGOBattle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Duel_Lite/src/APIYgo/YgoApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Duel_Lite/src/APIYgo/YgoApiClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,27 +60,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Run YGOBattle.executor": "Run",
-    "Application.YGOBattle.YGOBattle.executor": "Run",
-    "Application.YGOBattle.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "31",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "false",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "251",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII",
-    "onboarding.tips.debug.path": "C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII/Duel_Lite/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Run YGOBattle.executor&quot;: &quot;Run&quot;,
+    &quot;Application.YGOBattle.YGOBattle.executor&quot;: &quot;Run&quot;,
+    &quot;Application.YGOBattle.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;31&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;false&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;251&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/villa/IdeaProjects/Yu-Gi-Oh-Duel-Lite-DSIII/Duel_Lite/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Run YGOBattle">
     <configuration name="Run YGOBattle" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="YGOBattle.YGOBattle" />
